@@ -1,7 +1,12 @@
-import { Blob } from '@google/genai';
 
 export const PCM_SAMPLE_RATE_OUTPUT = 24000;
 export const PCM_SAMPLE_RATE_INPUT = 16000;
+
+// Define Blob interface locally to avoid dependency issues with CDN imports
+export interface GeminiAudioBlob {
+  data: string;
+  mimeType: string;
+}
 
 export function base64ToUint8Array(base64: string): Uint8Array {
   const binaryString = atob(base64);
@@ -23,7 +28,7 @@ export function arrayBufferToBase64(buffer: ArrayBuffer): string {
   return btoa(binary);
 }
 
-export function createPcmBlob(data: Float32Array, sampleRate: number): Blob {
+export function createPcmBlob(data: Float32Array, sampleRate: number): GeminiAudioBlob {
   const l = data.length;
   const int16 = new Int16Array(l);
   for (let i = 0; i < l; i++) {

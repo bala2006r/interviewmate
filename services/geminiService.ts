@@ -6,11 +6,18 @@ import { DifficultyLevel, InterviewType } from '../types';
 let aiClient: GoogleGenAI | null = null;
 
 export const initializeGemini = () => {
-  if (!process.env.API_KEY) {
+  let apiKey: string | undefined;
+  try {
+    apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
+  } catch (e) {
+    console.warn("Could not access process.env");
+  }
+
+  if (!apiKey) {
     console.error("API_KEY not found in environment variables.");
     return;
   }
-  aiClient = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  aiClient = new GoogleGenAI({ apiKey });
 };
 
 export const getAIClient = () => {
