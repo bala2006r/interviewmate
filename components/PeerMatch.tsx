@@ -3,7 +3,10 @@ import { Users, Search, CheckCircle, Clock, Mail, ShieldCheck, Loader2, X } from
 import { InterviewType } from '../types';
 import { supabase } from '../services/supabase';
 import { useAuth } from '../contexts/AuthContext';
-import { RealtimeChannel } from '@supabase/supabase-js';
+
+// Fix for "Module '@supabase/supabase-js' has no exported member 'RealtimeChannel'"
+// We infer the type from the return value of supabase.channel()
+type RealtimeChannel = ReturnType<typeof supabase.channel>;
 
 interface PeerMatchProps {
   onMatchFound: (type: InterviewType) => void;

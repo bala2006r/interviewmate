@@ -1,3 +1,11 @@
+
+// Add global definition for process.env for TypeScript checks
+declare var process: {
+  env: {
+    [key: string]: string | undefined;
+  }
+};
+
 export enum InterviewType {
   ALGORITHMS = 'Algorithms',
   SYSTEM_DESIGN = 'System Design',

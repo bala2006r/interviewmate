@@ -1,12 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Helper to safely access process.env in browser environments
+// Helper to safely access process.env in browser environments (handled by Vite's define plugin)
 const getEnv = (key: string) => {
-  try {
-    return typeof process !== 'undefined' ? process.env[key] : undefined;
-  } catch (e) {
-    return undefined;
-  }
+  return process.env[key];
 };
 
 // Use provided credentials or fallbacks

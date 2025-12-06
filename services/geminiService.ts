@@ -6,12 +6,9 @@ import { DifficultyLevel, InterviewType } from '../types';
 let aiClient: GoogleGenAI | null = null;
 
 export const initializeGemini = () => {
-  let apiKey: string | undefined;
-  try {
-    apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
-  } catch (e) {
-    console.warn("Could not access process.env");
-  }
+  // Access process.env directly. Vite replaces 'process.env' with the env object during build.
+  // We do NOT check typeof process because process is not polyfilled, only process.env is replaced.
+  const apiKey = process.env.API_KEY;
 
   if (!apiKey) {
     console.error("API_KEY not found in environment variables.");
