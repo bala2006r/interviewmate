@@ -1,0 +1,8 @@
+{
+  "name": "MockMate - AI Interview Platform",
+  "description": "A comprehensive technical interview practice platform featuring real-time AI voice interviews, code collaboration, and performance analytics.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
